@@ -1,25 +1,24 @@
-import MainPage from './pages/MainPage';
+import MainPage from './pages/MainPage.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
   AppRoute,
   AuthorizationStatus,
   Film,
-  FilmCard,
+  // FilmCard,
   PromoFilm,
-} from './const';
-import SignIn from './pages/SignIn';
-import Player from './pages/Player';
-import MoviePage from './pages/MoviePage';
-import AddReview from './pages/AddReview';
-import NotFound from './pages/NotFound';
-import PrivateRoute from './components/PrivateRoute';
-import MyList from './pages/MyList';
-import { filmCard } from './mocks/filmCard';
+} from './const.ts';
+import SignIn from './pages/SignIn.tsx';
+import Player from './pages/Player.tsx';
+import MoviePage from './pages/MoviePage.tsx';
+import AddReview from './pages/AddReview.tsx';
+import NotFound from './pages/NotFound.tsx';
+import PrivateRoute from './components/PrivateRoute.tsx';
+import MyList from './pages/MyList.tsx';
+import { filmCard } from './mocks/filmCard.ts';
 
 type AppProps = {
   promoFilm: PromoFilm;
-  // eslint-disable-next-line react/no-unused-prop-types
-  filmCard: FilmCard;
+  // filmCard: FilmCard;
   films: Film[];
 };
 

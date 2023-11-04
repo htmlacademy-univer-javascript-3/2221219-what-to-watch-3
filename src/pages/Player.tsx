@@ -1,4 +1,4 @@
-import { FilmCard } from '../const';
+import { FilmCard } from '../const.ts';
 import { Link } from 'react-router-dom';
 
 type PlayerProps = {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import Rating from './Rating';
+import Rating from './Rating.tsx';
 import { ChangeEvent, useState } from 'react';
 
 export type FormValues = {

@@ -1,5 +1,5 @@
-import { Film } from '../const';
-import MovieCard from './MovieCard';
+import { Film } from '../const.ts';
+import MovieCard from './MovieCard.tsx';
 import { useState } from 'react';
 
 type MoviesListPops = {
@@ -10,8 +10,7 @@ export default function MoviesList({ films }: MoviesListPops) {
   const [, setActiveFilm] = useState<string | null>(null);
 
   const handleFilmFocus = (id: string | null) => {
-    // eslint-disable-next-line no-console
-    console.log('Focus');
+    // console.log('Focus');
     setActiveFilm(id);
   };
 

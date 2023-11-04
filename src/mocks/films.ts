@@ -1,4 +1,4 @@
-import { Film } from '../const';
+import { Film } from '../const.ts';
 
 export const films: Film[] = [
   {

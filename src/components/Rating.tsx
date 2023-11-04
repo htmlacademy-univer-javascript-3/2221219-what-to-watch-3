@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import Star from './Star';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Star from './Star.tsx';
 
 type RatingProps = {
   setRating: any;

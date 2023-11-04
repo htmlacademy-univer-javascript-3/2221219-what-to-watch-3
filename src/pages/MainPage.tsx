@@ -1,5 +1,5 @@
-import { Film, PromoFilm } from '../const';
-import MoviesList from '../components/MoviesList';
+import { Film, PromoFilm } from '../const.ts';
+import MoviesList from '../components/MoviesList.tsx';
 import { Link } from 'react-router-dom';
 
 export type MainPageProps = {

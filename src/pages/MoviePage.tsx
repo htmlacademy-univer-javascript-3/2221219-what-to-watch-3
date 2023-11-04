@@ -1,4 +1,4 @@
-import { FilmCard } from '../const';
+import { FilmCard } from '../const.ts';
 import { Link } from 'react-router-dom';
 
 type MoviePageProps = {
@@ -129,7 +129,7 @@ export default function MoviePage({ filmCard }: MoviePageProps) {
 
                 <p className="film-card__starring">
                   <strong>
-                    Starring: {`${filmCard.starring.join(', ') } `}
+                    {/* Starring: {filmCard.starring.join(', ') + ' '} */}
                     and other
                   </strong>
                 </p>
