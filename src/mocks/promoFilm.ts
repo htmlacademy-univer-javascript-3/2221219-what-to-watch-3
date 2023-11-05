@@ -1,4 +1,4 @@
-import { PromoFilm } from '../const.ts';
+import { PromoFilm } from '../const';
 
 export const promoFilm: PromoFilm = {
   id: '36b6dce1-ec9b-4b1e-8002-32b737c7da29',

@@ -1,5 +1,5 @@
-import { Film, PromoFilm } from '../const.ts';
-import MoviesList from '../components/MoviesList.tsx';
+import { Film, PromoFilm } from '../../const';
+import MoviesList from '../../components/films-list';
 import { Link } from 'react-router-dom';
 
 export type MainPageProps = {
@@ -145,7 +145,7 @@ export default function MainPage({ films, promoFilm }: MainPageProps) {
             </li>
           </ul>
 
-          <MoviesList films={films} />
+          <MoviesList films={films} filmsCount={8} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">

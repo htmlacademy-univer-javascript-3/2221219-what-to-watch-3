@@ -1,6 +1,6 @@
-import { FilmCard } from '../const.ts';
+import { FilmCard } from '../../const';
 import { Link } from 'react-router-dom';
-import ReviewForm from '../components/ReviewForm.tsx';
+import ReviewForm from '../../components/review-form';
 
 type AddReviewProps = {
   film: FilmCard;

@@ -1,4 +1,4 @@
-import { Film } from '../const.ts';
+import { Film } from '../const';
 import { useEffect, useRef, useState } from 'react';
 
 type VideoPlayerProps = {

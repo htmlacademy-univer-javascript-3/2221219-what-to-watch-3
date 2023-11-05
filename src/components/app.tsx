@@ -1,25 +1,18 @@
-import MainPage from './pages/MainPage.tsx';
+import MainPage from '../pages/main/main-page';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {
-  AppRoute,
-  AuthorizationStatus,
-  Film,
-  // FilmCard,
-  PromoFilm,
-} from './const.ts';
-import SignIn from './pages/SignIn.tsx';
-import Player from './pages/Player.tsx';
-import MoviePage from './pages/MoviePage.tsx';
-import AddReview from './pages/AddReview.tsx';
-import NotFound from './pages/NotFound.tsx';
-import PrivateRoute from './components/PrivateRoute.tsx';
-import MyList from './pages/MyList.tsx';
-import { filmCard } from './mocks/filmCard.ts';
+import { AppRoute, AuthorizationStatus, Film, PromoFilm } from '../const';
+import SignIn from '../pages/sign-in/sign-in-page';
+import Player from '../pages/player/player-page';
+import MoviePage from '../pages/film/film-page';
+import AddReview from '../pages/add-review/add-review-page';
+import NotFound from '../pages/not-found/not-found-page';
+import PrivateRoute from '../components/private-route';
+import MyList from '../pages/my-list/my-list-page';
+import { filmCard } from '../mocks/filmCard';
 
 type AppProps = {
-  promoFilm: PromoFilm;
-  // filmCard: FilmCard;
   films: Film[];
+  promoFilm: PromoFilm;
 };
 
 export default function App({ films, promoFilm }: AppProps) {
@@ -42,7 +35,12 @@ export default function App({ films, promoFilm }: AppProps) {
         <Route path={AppRoute.Player} element={<Player film={filmCard} />} />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage filmCard={filmCard} />}
+          element={
+            <MoviePage
+              filmCard={filmCard}
+              authorizationStatus={AuthorizationStatus.Auth}
+            />
+          }
         />
         <Route
           path={AppRoute.AddReview}

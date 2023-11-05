@@ -1,5 +1,5 @@
-import MoviesList from '../components/MoviesList.tsx';
-import { Film } from '../const.ts';
+import MoviesList from '../../components/films-list';
+import { Film } from '../../const';
 
 type MyListProps = {
   films: Film[];
@@ -39,7 +39,7 @@ export default function MyList({ films }: MyListProps) {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList films={films} />
+        <MoviesList films={films} filmsCount={8} />
       </section>
 
       <footer className="page-footer">
