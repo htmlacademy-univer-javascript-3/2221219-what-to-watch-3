@@ -5,7 +5,7 @@ import Footer from '../../components/footer/footer';
 type MainScreenProps = {
   promoFilmTitle: string;
   promoFilmGenre: string;
-  promoFilmYear: number;
+  promoFilmYear: string;
 }
 
 function MainScreen ({promoFilmTitle, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {

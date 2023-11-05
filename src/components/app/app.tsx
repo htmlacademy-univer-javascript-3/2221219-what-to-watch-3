@@ -1,9 +1,9 @@
-import MainScreen from '../../pages/main-screen/main-screen';
+import MainScreen from '../../pages/main/main-page';
 
 type AppProps = {
   promoFilmTitle: string;
   promoFilmGenre: string;
-  promoFilmYear: number;
+  promoFilmYear: string;
 }
 
 function App({promoFilmTitle, promoFilmGenre, promoFilmYear}: AppProps): JSX.Element {
