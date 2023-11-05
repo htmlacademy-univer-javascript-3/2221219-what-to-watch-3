@@ -1,4 +1,4 @@
-import Rating from './rating';
+import Rating from './Rating';
 import { ChangeEventHandler, useState } from 'react';
 
 export type FormValues = {
