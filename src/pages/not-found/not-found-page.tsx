@@ -12,7 +12,7 @@ export default function NotFound() {
         <span className="four"><span className="screen-reader-text">4</span></span>
       </section>
       <div className="link-container">
-        <a className='more-link'><Link to={'/'}>Return to the homepage</Link></a>
+        <a className='more-link'><Link to={'/'}>return to the homepage</Link></a>
       </div>
     </div>
   );
