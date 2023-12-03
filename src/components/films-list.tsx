@@ -1,5 +1,5 @@
 import { Film } from '../const';
-import MovieCard from './film-card';
+import MovieCard from './film-card.tsx';
 import { useState } from 'react';
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 

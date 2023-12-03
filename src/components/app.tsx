@@ -1,6 +1,6 @@
 import MainPage from '../pages/main/main-page';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, Film, PromoFilm } from '../const';
+import { AppRoute, AuthorizationStatus, Film} from '../const';
 import SignIn from '../pages/sign-in/sign-in-page';
 import Player from '../pages/player/player-page';
 import MoviePage from '../pages/film/film-page';
@@ -12,17 +12,13 @@ import { filmCard } from '../mocks/filmCard';
 
 type AppProps = {
   films: Film[];
-  promoFilm: PromoFilm;
 };
 
-export default function App({ films, promoFilm }: AppProps) {
+export default function App({ films }: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage promoFilm={promoFilm} />}
-        />
+        <Route path={AppRoute.Main} element={<MainPage />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
         <Route
           path={AppRoute.MyList}
