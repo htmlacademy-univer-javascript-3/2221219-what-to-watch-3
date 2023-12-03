@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import MainPage from '../pages/main/main-page';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, Film} from '../const';
+import { AppRoute, AuthorizationStatus } from '../const';
 import SignIn from '../pages/sign-in/sign-in-page';
 import Player from '../pages/player/player-page';
 import MoviePage from '../pages/film/film-page';
@@ -9,9 +10,10 @@ import NotFound from '../pages/not-found/not-found-page';
 import PrivateRoute from '../components/private-route';
 import MyList from '../pages/my-list/my-list-page';
 import { filmCard } from '../mocks/filmCard';
+import { FilmType } from '../types.ts';
 
 type AppProps = {
-  films: Film[];
+  films: FilmType[];
 };
 
 export default function App({ films }: AppProps) {

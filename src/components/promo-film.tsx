@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks.ts';
 import Logo from './logo.tsx';
 import UserBlock from './user-block.tsx';
-import { PromoFilmType } from '../const.ts';
+import { PromoFilmType } from '../types.ts';
 
 type PromoFilmProps = {
   promoFilm: PromoFilmType;
