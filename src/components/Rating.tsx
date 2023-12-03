@@ -1,4 +1,4 @@
-import Star from './Star';
+import Star from './star.tsx';
 import { ChangeEventHandler } from 'react';
 
 type RatingProps = {

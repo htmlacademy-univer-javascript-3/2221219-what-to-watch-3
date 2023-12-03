@@ -1,21 +1,27 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { createReducer } from '@reduxjs/toolkit';
 import {
   addShowedFilms,
   loadFilms,
   loadPromoFilm,
   setActiveGenre,
+  requireAuthorization,
   setGenres,
+  setUserImage,
+  setError,
 } from './action.ts';
-import { Film, Genre, PromoFilmType, SHOW_FILMS_COUNT } from '../const.ts';
+import { AuthorizationStatus, SHOW_FILMS_COUNT } from '../const.ts';
+import { FilmType, Genre, PromoFilmType } from '../types.ts';
 
 type initialStateProps = {
-  films: Film[];
-  filmsByGenre: Film[];
+  films: FilmType[];
+  filmsByGenre: FilmType[];
   promoFilm: PromoFilmType | null;
   genres: Genre[];
   activeGenre: Genre;
   filmsCount: number;
+  authorizationStatus: AuthorizationStatus;
+  userImage: string;
+  error: string | null;
 };
 
 const initialState: initialStateProps = {
@@ -25,6 +31,9 @@ const initialState: initialStateProps = {
   genres: [],
   activeGenre: 'All genres',
   filmsCount: SHOW_FILMS_COUNT,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userImage: '',
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -59,6 +68,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadPromoFilm, (state, action) => {
       state.promoFilm = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserImage, (state, action) => {
+      state.userImage = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

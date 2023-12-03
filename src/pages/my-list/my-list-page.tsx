@@ -1,11 +1,11 @@
 import MoviesList from '../../components/films-list.tsx';
-import { Film } from '../../const.ts';
 import Logo from '../../components/logo.tsx';
 import Footer from '../../components/footer.tsx';
 import UserBlock from '../../components/user-block.tsx';
+import { FilmType } from '../../types.ts';
 
 type MyListProps = {
-  films: Film[];
+  films: FilmType[];
 };
 
 export default function MyList({ films }: MyListProps) {
