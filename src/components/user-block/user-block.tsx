@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useAppDispatch, useAppSelector } from '../../redux/hooks.ts';
 import { Link } from 'react-router-dom';
 import { logoutAction } from '../../redux/api-actions.ts';
