@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { useAppSelector } from './redux/hooks.ts';
 import { ALL_GENRES } from './const.ts';
