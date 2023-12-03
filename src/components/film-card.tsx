@@ -1,8 +1,8 @@
-import { Film } from '../const';
+import { Film } from '../const.ts';
 import { Link } from 'react-router-dom';
-import VideoPlayer from './video-player';
+import VideoPlayer from './video-player.tsx';
 
-type FilmCardProps = {
+type MovieCardProps = {
   film: Film;
   activeFilm: string | null;
   onMouseOver: (id: string) => void;
@@ -14,7 +14,7 @@ export default function MovieCard({
   activeFilm,
   onMouseOver,
   onMouseOut,
-}: FilmCardProps) {
+}: MovieCardProps) {
   return (
     <article
       className="small-film-card catalog__films-card"
@@ -25,7 +25,7 @@ export default function MovieCard({
         <VideoPlayer film={film} activeFilm={activeFilm} />
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`films/${film.id}`}>
+        <Link className="small-film-card__link" to={`/films/${film.id}`}>
           {film.name}
         </Link>
       </h3>

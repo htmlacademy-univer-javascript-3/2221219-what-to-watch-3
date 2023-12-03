@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../redux/hooks.ts';
-import { filmsByGenre, setActiveGenre, setGenres } from '../redux/action.ts';
+import { setActiveGenre, setGenres } from '../redux/action.ts';
 import { Genre } from '../const.ts';
 import GenreItem from './genre-item.tsx';
 import { useEffect } from 'react';
 
 export default function GenresList() {
-  const { films, genres } = useAppSelector((state) => state);
+  const genres = useAppSelector((state) => state.genres);
+  const films = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,8 +17,8 @@ export default function GenresList() {
 
   const handleGenreClick = (genre: string) => {
     dispatch(setActiveGenre(genre));
-    dispatch(filmsByGenre());
   };
+
   return (
     <ul className="catalog__genres-list">
       {Array.from(genres)
