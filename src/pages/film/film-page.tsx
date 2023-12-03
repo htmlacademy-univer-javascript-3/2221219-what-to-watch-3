@@ -1,22 +1,54 @@
-import { AuthorizationStatus, MORE_LIKE_FILMS_COUNT } from '../../const.ts';
-import { Link } from 'react-router-dom';
-import Tabs from '../../components/tabs.tsx';
-import { films } from '../../mocks/films.ts';
-import MoviesList from '../../components/films-list.tsx';
-import Logo from '../../components/logo.tsx';
-import Footer from '../../components/footer.tsx';
-import UserBlock from '../../components/user-block.tsx';
-import { FilmCardType } from '../../types.ts';
+import {
+  AppRoute,
+  AuthorizationStatus,
+  MORE_LIKE_FILMS_COUNT,
+} from '../../const.ts';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Tabs from '../../components/tabs/tabs.tsx';
+import MoviesList from '../../components/films-list/films-list.tsx';
+import Logo from '../../components/logo/logo.tsx';
+import Footer from '../../components/footer/footer.tsx';
+import UserBlock from '../../components/user-block/user-block.tsx';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks.ts';
+import Spinner from '../../components/spinner/spinner.tsx';
+import { useEffect } from 'react';
+import {
+  fetchComments,
+  fetchFilmAction,
+  fetchMoreLikeThis,
+} from '../../redux/api-actions.ts';
+import AddToMyListButton from '../../components/add-to-my-list-button/add-to-my-list-button.tsx';
+import RemoveToMyListButton from '../../components/remove-from-my-list-button/remove-from-my-list-button.tsx';
 
-type MoviePageProps = {
-  filmCard: FilmCardType;
-  authorizationStatus: AuthorizationStatus;
-};
+export default function MoviePage() {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-export default function MoviePage({
-  filmCard,
-  authorizationStatus,
-}: MoviePageProps) {
+  const error = useAppSelector((state) => state.error);
+  const authorizationStatus = useAppSelector(
+    (state) => state.authorizationStatus
+  );
+  const filmCard = useAppSelector((state) => state.filmCard);
+  const moreLikeThis = useAppSelector((state) => state.moreLikeThis);
+  const myList = useAppSelector((state) => state.myList);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmAction(id));
+      dispatch(fetchMoreLikeThis(id));
+      dispatch(fetchComments(id));
+    }
+  }, [dispatch, id]);
+
+  if (error || !id) {
+    navigate(AppRoute.NotFound);
+  }
+
+  if (!filmCard || filmCard.id !== id) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -52,16 +84,11 @@ export default function MoviePage({
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                {myList.findIndex((film) => film.id === filmCard.id) === -1 ? (
+                  <AddToMyListButton filmId={filmCard.id} />
+                ) : (
+                  <RemoveToMyListButton filmId={filmCard.id} />
+                )}
                 {authorizationStatus === AuthorizationStatus.Auth && (
                   <Link to={'review'} className="btn film-card__button">
                     Add review
@@ -89,10 +116,15 @@ export default function MoviePage({
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <MoviesList films={films} filmsCount={MORE_LIKE_FILMS_COUNT} />
-        </section>
+        {moreLikeThis.length !== 0 && (
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <MoviesList
+              films={moreLikeThis}
+              filmsCount={MORE_LIKE_FILMS_COUNT}
+            />
+          </section>
+        )}
 
         <Footer />
       </div>

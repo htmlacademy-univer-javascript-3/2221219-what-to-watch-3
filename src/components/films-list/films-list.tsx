@@ -1,11 +1,12 @@
 import MovieCard from './film-card.tsx';
 import { useState } from 'react';
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
-import { FilmType } from '../types.ts';
+import { FilmType } from '../../types.ts';
+import { SHOW_INTRO_DELAY } from '../../const.ts';
 
 type MoviesListProps = {
   films: FilmType[];
-  filmsCount: number;
+  filmsCount: number | undefined;
 };
 
 export default function MoviesList({ films, filmsCount }: MoviesListProps) {
@@ -14,7 +15,7 @@ export default function MoviesList({ films, filmsCount }: MoviesListProps) {
   const handleFilmFocus = (id: string) => {
     timer = setTimeout(() => {
       setActiveFilm(id);
-    }, 1000);
+    }, SHOW_INTRO_DELAY);
   };
 
   const handleFilmOut = () => {

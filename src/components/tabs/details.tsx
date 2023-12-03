@@ -1,5 +1,5 @@
-import { getFormattedTime } from '../utils.ts';
-import { FilmCardType } from '../types.ts';
+import { getFormattedTime } from '../../utils.ts';
+import { FilmCardType } from '../../types.ts';
 
 type DetailsProps = {
   filmCard: FilmCardType;

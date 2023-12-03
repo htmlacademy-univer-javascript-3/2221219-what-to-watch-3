@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import VideoPlayer from './video-player.tsx';
-import { FilmType } from '../types.ts';
+import VideoPlayer from '../video-player/video-player.tsx';
+import { FilmType } from '../../types.ts';
 
 type MovieCardProps = {
   film: FilmType;
