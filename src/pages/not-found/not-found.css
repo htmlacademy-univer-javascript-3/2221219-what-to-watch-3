@@ -105,7 +105,6 @@
 }
 
 .page-content-not-found {
-  /* font-family: 'Montserrat', Helvetica, sans-serif; */
   height: 100vh;
 }
 
@@ -125,7 +124,7 @@
   text-align: center;
 }
 
-a.more-link {
+button.more-link {
   text-transform: uppercase;
   font-size: 13px;
   background-color: #eee5b5;

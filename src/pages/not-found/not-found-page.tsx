@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
-import './not-found.css';
+import { useAppDispatch } from '../../redux/hooks.ts';
+import { fetchFilmsAction } from '../../redux/api-actions.ts';
 
-export default function NotFound() {
+function ErrorScreen() {
+  const dispatch = useAppDispatch();
+
+  const handleTryAgain = () => {
+    dispatch(fetchFilmsAction());
+  };
+
   return (
     <div className="page-content page-content-not-found">
       <h1 className='error-h1'>404 Not Found</h1>
@@ -12,8 +18,10 @@ export default function NotFound() {
         <span className="four"><span className="screen-reader-text">4</span></span>
       </section>
       <div className="link-container">
-        <a className='more-link'><Link to={'/'}>return to the homepage</Link></a>
+        <button onClick={handleTryAgain} className="replay replay--error more-link" type="button">return to the homepage</button>
       </div>
     </div>
   );
 }
+
+export default ErrorScreen;
