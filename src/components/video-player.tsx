@@ -1,4 +1,4 @@
-import { Film } from '../const';
+import { Film } from '../const.ts';
 import { useEffect, useRef, useState } from 'react';
 
 type VideoPlayerProps = {
@@ -43,6 +43,7 @@ export default function VideoPlayer({ film, activeFilm }: VideoPlayerProps) {
 
   return (
     <video
+      style={{ borderRadius: '5px' }}
       width="280"
       height="175"
       poster={film.previewImage}
