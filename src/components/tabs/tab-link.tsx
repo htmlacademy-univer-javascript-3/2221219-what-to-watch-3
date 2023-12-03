@@ -1,4 +1,4 @@
-import { TabType } from '../const.ts';
+import { TabType } from '../../const.ts';
 import { SyntheticEvent } from 'react';
 
 type TabLinkProps = {

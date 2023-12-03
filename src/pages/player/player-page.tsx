@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { FilmCardType } from '../../types.ts';
+import { useAppSelector } from '../../redux/hooks.ts';
+import Spinner from '../../components/spinner/spinner.tsx';
 
-type PlayerProps = {
-  film: FilmCardType;
-};
+export default function PlayerPage() {
+  const film = useAppSelector((state) => state.filmCard);
+  if (!film) {
+    return <Spinner />;
+  }
 
-export default function Player({ film }: PlayerProps) {
   return (
     <div className="player">
       <video

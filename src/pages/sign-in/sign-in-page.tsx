@@ -1,31 +1,46 @@
-import Logo from '../../components/logo.tsx';
-import Footer from '../../components/footer.tsx';
+import Logo from '../../components/logo/logo.tsx';
+import Footer from '../../components/footer/footer.tsx';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { useAppDispatch } from '../../redux/hooks.ts';
 import { login } from '../../redux/api-actions.ts';
 import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const.ts';
 
 export type UserFormValues = {
   email: string;
   password: string;
 };
 
-export default function SignIn() {
+export default function SignInPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<UserFormValues>({
     email: '',
     password: '',
   });
+  const [isValid, setIsValid] = useState(false);
+
+  const handleValidate = (newFormData: UserFormValues) => {
+    const validated =
+      newFormData.email.match(/[a-zA-Z0-9.]+@[a-zA-Z]+[.][a-zA-Z]{2,4}$/) &&
+      newFormData.password.match(/^(?=.*[a-zA-Z])(?=.*[0-9]).+$/);
+    setIsValid(!!validated);
+  };
 
   const handleFieldChange: ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { name, value } = evt.target;
-    setFormData({ ...formData, [name]: value });
+
+    setFormData(() => {
+      const newFormData: UserFormValues = { ...formData, [name]: value };
+      handleValidate(newFormData);
+      return newFormData;
+    });
   };
 
-  const handleSubmit: FormEventHandler = () => {
+  const handleSubmit: FormEventHandler<HTMLButtonElement> = (evt) => {
+    evt.preventDefault();
     dispatch(login(formData));
-    navigate('/');
+    navigate(AppRoute.Main);
   };
 
   return (
@@ -47,6 +62,7 @@ export default function SignIn() {
                 name="email"
                 id="user-email"
                 onChange={handleFieldChange}
+                required
               />
               <label
                 className="sign-in__label visually-hidden"
@@ -63,6 +79,7 @@ export default function SignIn() {
                 name="password"
                 id="user-password"
                 onChange={handleFieldChange}
+                required
               />
               <label
                 className="sign-in__label visually-hidden"
@@ -75,8 +92,10 @@ export default function SignIn() {
           <div className="sign-in__submit">
             <button
               className="sign-in__btn"
-              type="button"
+              type="submit"
+              onSubmit={handleSubmit}
               onClick={handleSubmit}
+              disabled={!isValid}
             >
               Sign in
             </button>

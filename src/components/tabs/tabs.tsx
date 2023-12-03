@@ -1,11 +1,10 @@
-import { TabType } from '../const.ts';
+import { TabType } from '../../const.ts';
 import Overview from './overview.tsx';
-import { SyntheticEvent, useState } from 'react';
 import Details from './details.tsx';
 import Reviews from './reviews.tsx';
 import TabLink from './tab-link.tsx';
-import { comments } from '../mocks/comments.ts';
-import { FilmCardType } from '../types.ts';
+import { SyntheticEvent, useState } from 'react';
+import { FilmCardType } from '../../types.ts';
 
 type TabsProps = {
   filmCard: FilmCardType;
@@ -15,7 +14,7 @@ export default function Tabs({ filmCard }: TabsProps) {
   const tabs = {
     [TabType.Overview]: <Overview filmCard={filmCard} />,
     [TabType.Details]: <Details filmCard={filmCard} />,
-    [TabType.Reviews]: <Reviews comments={comments} />,
+    [TabType.Reviews]: <Reviews />,
   };
   const handleTabChange = (evt: SyntheticEvent) => {
     const targetId = evt.currentTarget.id as TabType;
@@ -27,21 +26,24 @@ export default function Tabs({ filmCard }: TabsProps) {
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
-        <ul className="film-nav__list" onClick={handleTabChange}>
+        <ul className="film-nav__list">
           <TabLink
             tabType={TabType.Overview}
             activeTab={activeTab}
             onClick={handleTabChange}
+            key={TabType.Overview}
           />
           <TabLink
             tabType={TabType.Details}
             activeTab={activeTab}
             onClick={handleTabChange}
+            key={TabType.Details}
           />
           <TabLink
             tabType={TabType.Reviews}
             activeTab={activeTab}
             onClick={handleTabChange}
+            key={TabType.Reviews}
           />
         </ul>
       </nav>

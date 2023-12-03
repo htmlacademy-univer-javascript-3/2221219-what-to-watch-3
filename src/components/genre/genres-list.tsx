@@ -1,8 +1,9 @@
-import { useAppDispatch, useAppSelector } from '../redux/hooks.ts';
-import { setActiveGenre, setGenres } from '../redux/action.ts';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks.ts';
+import { setGenres } from '../../redux/action.ts';
 import GenreItem from './genre-item.tsx';
 import { useEffect } from 'react';
-import { Genre } from '../types.ts';
+import { Genre } from '../../types.ts';
+import { MAX_GENRES_COUNT } from '../../const.ts';
 
 export default function GenresList() {
   const genres = useAppSelector((state) => state.genres);
@@ -12,20 +13,14 @@ export default function GenresList() {
   useEffect(() => {
     const newGenres = new Set<Genre>(['All genres']);
     films.forEach((film) => newGenres.add(film.genre));
-    dispatch(setGenres(Array.from(newGenres).slice(0, 9)));
+    dispatch(setGenres(Array.from(newGenres).slice(0, MAX_GENRES_COUNT)));
   }, [dispatch, films]);
-
-  const handleGenreClick = (genre: string) => {
-    dispatch(setActiveGenre(genre));
-  };
 
   return (
     <ul className="catalog__genres-list">
-      {Array.from(genres)
-        .slice(0, 9)
-        .map((genre) => (
-          <GenreItem genre={genre} onClick={handleGenreClick} key={genre} />
-        ))}
+      {Array.from(genres).map((genre) => (
+        <GenreItem genre={genre} key={genre} />
+      ))}
     </ul>
   );
 }

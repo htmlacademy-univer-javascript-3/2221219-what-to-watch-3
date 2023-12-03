@@ -1,5 +1,5 @@
-import { getFilmGrade, getFormattedRating } from '../utils.ts';
-import { FilmCardType } from '../types.ts';
+import { getFilmGrade, getFormattedRating } from '../../utils.ts';
+import { FilmCardType } from '../../types.ts';
 
 type OverviewProps = {
   filmCard: FilmCardType;

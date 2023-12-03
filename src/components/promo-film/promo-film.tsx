@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../redux/hooks.ts';
-import Logo from './logo.tsx';
-import UserBlock from './user-block.tsx';
-import { PromoFilmType } from '../types.ts';
+import Logo from '../logo/logo.tsx';
+import UserBlock from '../user-block/user-block.tsx';
+import { PromoFilmType } from '../../types.ts';
+import AddToMyListButton from '../add-to-my-list-button/add-to-my-list-button.tsx';
+import RemoveToMyListButton from '../remove-from-my-list-button/remove-from-my-list-button.tsx';
+import { useAppSelector } from '../../redux/hooks.ts';
 
 type PromoFilmProps = {
   promoFilm: PromoFilmType;
 };
 
 export default function PromoFilm({ promoFilm }: PromoFilmProps) {
-  const films = useAppSelector((state) => state.films);
+  const myList = useAppSelector((state) => state.myList);
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -52,13 +54,11 @@ export default function PromoFilm({ promoFilm }: PromoFilmProps) {
                 </svg>
                 <span>Play</span>
               </Link>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">{films.length}</span>
-              </button>
+              {myList.findIndex((film) => film.id === promoFilm.id) === -1 ? (
+                <AddToMyListButton filmId={promoFilm.id} />
+              ) : (
+                <RemoveToMyListButton filmId={promoFilm.id} />
+              )}
             </div>
           </div>
         </div>

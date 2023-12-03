@@ -1,11 +1,8 @@
 import UserReview from './review.tsx';
-import { CommentType } from '../types.ts';
+import { useAppSelector } from '../../redux/hooks.ts';
 
-type ReviewsProps = {
-  comments: CommentType[];
-};
-
-export default function Reviews({ comments }: ReviewsProps) {
+export default function Reviews() {
+  const comments = useAppSelector((state) => state.comments);
   return (
     <div className="film-card__reviews-col">
       {comments.map((comment) => (
